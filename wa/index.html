@@ -1,40 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dieder</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dieder</title>
+  <style>
+    h1, h2, p, address {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p, address {
+      margin: 0.25rem 0;
+      font-size: 1.2rem;
+    }
+
+    address {
+      font-style: normal; /* prevent italic default for address */
+    }
+
+    header, main, section {
+      margin-bottom: 2rem;
+    }
+
+    footer {
+        text-align: center;  
+        padding: 20rem;
+        font-size: 1.2rem;
+    }
+
+    footer a {
+        text-decoration: none;    /* remove underline */
+        color: inherit;           /* keeps default text color */
+        margin: 0 .25rem;         /* space between links */
+    }
+
+    footer a:hover {
+        text-decoration: underline; /* optional hover effect */
+    }
+  </style>
 </head>
-
 <body>
-    <div class="header/about">
-        <div class="header">
-            <h1 style="text-align: center;">Diedrich Thyen</h1>
-            <p style="text-align: center;">What up I am dieder pronounced deedur and I am a student. </p>
-        </div>
-    </div>
+  <header>
+    <h1>Diedrich Thyen</h1>
+    <p>What up I am dieder (pronounced deedur) and I am a student.</p>
+  </header>
 
-    <div class="intrests">
-        <div class="header">
-            <h2 style="text-align: center;">Intrest(s)</h2>
-            <p style="text-align: center;">Intrested in getting to this chedda</p>
-        </div>
-    </div>
+  <main>
+    <section>
+      <h2>Interest(s)</h2>
+      <p>Interested in getting to this chedda</p>
+    </section>
 
-    <div class="goals">
-        <div class="header">
-            <h2 style="text-align: center;">My goals</h2>
-            <p style="text-align: center;">Find myself and my passion and people and everything will fall into place from there lowkey</p>
-        </div>
-    </div>
+    <section>
+      <h2>My Goals</h2>
+      <p>Find myself and my passion and people</p>
+    </section>
 
-    <div class="contact info">
-        <div class="header">
-            <h2 style="text-align: center;">Hit me up</h2>
-            <p style="text-align: center;">@dith1234@colorado.edu</p>
-            <p style="text-align: center;">#123-456-7890</p>
-        </div>
-    </div>
+    <section>
+      <h2>Hit Me Up</h2>
+      <address>
+        <p>@dith1234@colorado.edu</p>
+        <p>#123-456-7890</p>
+      </address>
+    </section>
+
+    <footer>
+    <nav>
+    [<a href="index.html">home</a> ]
+    [<a href="mememe.html">more about me</a>] 
+    [<a href="flics.html">flics</a>]
+    [<a href="song.html">music</a>]
+    [<a href="design.html">design</a>]
+    </nav>
+    </footer>
+
+  </main>
 </body>
-
 </html>
