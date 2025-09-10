@@ -21,31 +21,25 @@
     .color-box {
       width: 200px;
       height: 100px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-size: 12px;
+      color: #ffffff; /*white text default*/
     }
 
-    #box1 { background-color: #DDD8B8; color:#1F1300; }
-    #box2 { background-color: #335C67; }
-    #box3 { background-color: #C3979F; color:#1F1300; }
-    #box4 { background-color: #1F1300; }
-    #box5 { background-color: #01BAEF; }
-
-    p { font-size: 16px; }
+    #box1 {background-color: #DDD8B8; color:#000000;}
+    #box2 {background-color: #335C67;}
+    #box3 {background-color: #C3979F; color:#000000;}
+    #box4 {background-color: #704300;}
+    #box5 {background-color: #01BAEF; color:#000000;}
 
     .small-text { font-size: 12px; }
-
+    p { font-size: 16px; }
     h3 { font-size: 20px; }
     h2 { font-size: 24px; }
     h1 { font-size: 30px; }
 
     a {
       text-decoration: none;
-      color: #1F1300;
+      color: #01BAEF;
+      font-weight: bold;
     }
     a:hover {
       text-decoration: underline;
@@ -63,28 +57,26 @@
       background-color: #DDD8B8;
       margin-bottom: 8px;
     }
-    .space-8 { height: 8px; width: 100px; }
-    .space-16 { height: 16px; width: 100px; }
-    .space-24 { height: 24px; width: 100px; }
-    .space-32 { height: 32px; width: 100px; }
-    .space-48 { height: 48px; width: 100px; }
+    .space-8 { height: 8px; width: 250px; }
+    .space-16 { height: 16px; width: 250px; }
+    .space-24 { height: 24px; width: 250px; }
+    .space-32 { height: 32px; width: 250px; }
+    .space-48 { height: 48px; width: 250px; }
 
     /* Buttons */
     .btn {
       background-color: #335C67;
-      color: #fff;
-      border: none;
+      color: #ffffff;
       padding: 12px 20px;
       cursor: pointer;
       font-size: 14px;
-      border-radius: 4px;
+      border-radius: 6px;
+      /* border: none; */
     }
-    .btn:hover {
-      background-color: #01BAEF;
+    .btn:hover{
+      background-color: #C3979F;
     }
-    .btn:focus {
-      outline: 2px solid #C3979F;
-    }
+
   </style>
 </head>
 
@@ -92,33 +84,32 @@
   <!-- color boxes -->
   <div class="flex">
     <div class="color-box" id="box1">
-      #DDD8B8<br>Contrast ✓
+      #DDD8B8 <br>Contrast 14.58:1
     </div>
     <div class="color-box" id="box2">
-      #335C67<br>Contrast ✓
+      #335C67 <br>Contrast 7.32:1
     </div>
     <div class="color-box" id="box3">
-      #C3979F<br>Contrast ✓
+      #C3979F <br>Contrast 8.24:1
     </div>
     <div class="color-box" id="box4">
-      #1F1300<br>Contrast ✓
+      #1F1300<br>Contrast 8.42:1
     </div>
     <div class="color-box" id="box5">
-      #01BAEF<br>Contrast ✓
+      #01BAEF<br>Contrast 9.27:1
     </div>
   </div>
 
-  <!-- text samples -->
+  <!--text samples -->
   <h1>Heading 1</h1>
   <h2>Heading 2</h2>
   <h3>Heading 3</h3>
-
   <p>Paragraph text example</p>
   <p class="small-text">This is small text</p> 
 
   <p><a href="#">this is a link</a></p>
 
-  <!-- Spacing system -->
+  <!--spacing system -->
   <div class="spacing-demo">
     <h3>Spacing System</h3>
     <div class="space space-8">8px</div>
@@ -128,7 +119,7 @@
     <div class="space space-48">48px</div>
   </div>
 
-  <!-- Buttons -->
+  <!--button -->
   <h3>Button Examples</h3>
   <button class="btn">Primary Button</button>
 </body>
