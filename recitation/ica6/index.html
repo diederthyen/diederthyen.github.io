@@ -7,13 +7,12 @@
     <style>
         body {
             font-family: sans-serif;
-            background-color: #f0f2f5;
+            background-color: #ccd6e5;
             padding: 1rem;
         }
+        /* --- Part 1 grid conversion --- */
 
-        /* --- Part 1: Grid Conversion --- */
-
-        /* Step 1: Main Layout Grid */
+        /* main layout grid */
         .gallery-container {
             display: grid;
             grid-template-columns: 1fr 200px;
@@ -23,58 +22,57 @@
                 "nav    sidebar"
                 "main   sidebar";
             gap: 1rem;
-            background-color: #ffffff;
+            background-color: white;
             border-radius: 8px;
         }
 
-        /* Assigning elements to grid areas */
-        .gallery-header { 
-            grid-area: header; 
-            background-color: #4a4e69;
+        /* assign elements to grid areas */
+        .gallery-header {
+            grid-area: header;
+            background-color: #545876;
             color: white;
             padding: 1rem;
             border-radius: 8px 8px 0 0;
         }
-        .gallery-nav { 
-            grid-area: nav; 
+        .gallery-nav {
+            grid-area: nav;
             padding: 1rem;
         }
-        .gallery-grid { 
-            grid-area: main; 
+        .gallery-grid {
+            grid-area: main;
             padding: 0 1rem 1rem;
         }
-        .gallery-sidebar { 
-            grid-area: sidebar; 
-            background-color: #f2e9e4;
+        .gallery-sidebar {
+            grid-area: sidebar;
+            background-color: #e4d5cd;
             padding: 1rem;
             border-radius: 0 0 8px 0;
         }
 
-        /* Step 2: Photo Grid */
+        /* photo Grid */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
         }
 
-        /* Basic styling for photo cards */
+        /* styling for photo cards */
         .photo-card {
             height: 200px;
             padding: 1rem;
-            background-color: #9a8c98;
+            background-color: #8a7a88;
             color: white;
             border-radius: 4px;
             text-align: center;
         }
 
-        /* Step 3: Position the featured photo */
+        /* Step 3 featured photo */
         .featured {
-            background-color: #22223b;
-            /* Spans 2 columns, as required */
+            background-color: #2a2a47;
             grid-column: span 2;
         }
         
-        /* Basic button styling */
+        /*button styling */
         .gallery-nav button {
             padding: 0.5rem 1rem;
             border: 1px solid #4a4e69;
@@ -86,16 +84,15 @@
         }
 
         .gallery-nav button:hover {
-            background-color: #c9c2d1;
+            background-color: #d2cdd1;
         }
-
     </style>
 </head>
 <body>
 
     <div class="gallery-container">
         <header class="gallery-header">
-            <h2>Photo Gallery</h2>
+            <h2> Photo Gallery </h2>
         </header>
         
         <nav class="gallery-nav">
@@ -119,7 +116,7 @@
     </div>
 
     <script>
-        // Part 2, Step 2: Add event listeners
+        // Part 2 step 2, add event listeners
         const filterButtons = document.querySelectorAll('.gallery-nav button');
         const photoCards = document.querySelectorAll('.photo-card');
 
@@ -130,12 +127,11 @@
             });
         });
 
-        // Part 2, Step 3: Write the filter function
+        // Part 2 step 3, filter function
         function filterPhotos(category) {
             photoCards.forEach(card => {
                 const cardCategory = card.dataset.category;
-                
-                // Show card if category is 'all' or if the card's category matches
+                // show card if category is 'all' or if the card's category matches
                 if (category === 'all' || cardCategory === category) {
                     card.style.display = 'block'; // use 'block' as a basic display type
                 } else {
