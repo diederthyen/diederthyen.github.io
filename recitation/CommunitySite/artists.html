@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artists Page</title>
+    <title>Find Artists - Boulder Music Hub</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,27 +11,27 @@
     <div class="artist-grid">
         <header class="main-header">
             <nav class="main-nav">
-                <div class="nav-brand">Community Hub</div>
+                <div class="nav-brand">boulder music hub</div>
                 <button class="nav-toggle">
                     <span class="bar"></span>
                 </button>
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="artists.html">Artists</a></li>
-                    <li><a href="#">Link 3</a></li>
-                    <li><a href="#">Link 4</a></li>
-                    <li><a class="primary" href="#">Action Button</a></li>
+                    <li><a href="#gigs">Gigs</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a class="primary" href="#post-gig">Post a Gig</a></li>
                 </ul>
             </nav>
         </header>
 
         <aside class="filter-controls">
-            <h2>Filters</h2>
+            <h2>Filter Artists</h2>
             <div class="filters">
                 <button data-genre="all" class="active">All</button>
-                <button data-genre="type1">Type 1</button>
-                <button data-genre="type2">Type 2</button>
-                <button data-genre="type3">Type 3</button>
+                <button data-genre="folk">Folk</button>
+                <button data-genre="rock">Rock</button>
+                <button data-genre="jazz">Jazz</button>
             </div>
             
             <div class="theme-switch-wrapper">
@@ -41,31 +41,31 @@
         </aside>
 
         <main class="artist-results">
-            <div class="artist-card" data-genre="type2">
-                <h3>Artist 1</h3>
-                <p>Genre: Type 2</p>
+            <div class="artist-card" data-genre="folk">
+                <h3>Gregory Alan Isakov</h3>
+                <p>Genre: Folk</p>
             </div>
-            <div class="artist-card" data-genre="type1">
-                <h3>Artist 2</h3>
-                <p>Genre: Type 1</p>
+            <div class="artist-card" data-genre="rock">
+                <h3>Big Head Todd and the Monsters</h3>
+                <p>Genre: Rock</p>
             </div>
-            <div class="artist-card" data-genre="type3">
-                <h3>Artist 3</h3>
-                <p>Genre: Type 3</p>
+            <div class="artist-card" data-genre="jazz">
+                <h3>Art Lande</h3>
+                <p>Genre: Jazz</p>
             </div>
-             <div class="artist-card" data-genre="type1">
-                <h3>Artist 4</h3>
-                <p>Genre: Type 1</p>
+             <div class="artist-card" data-genre="folk">
+                <h3>Elephant Revival</h3>
+                <p>Genre: Folk</p>
             </div>
-             <div class="artist-card" data-genre="type2">
-                <h3>Artist 5</h3>
-                <p>Genre: Type 2</p>
+             <div class="artist-card" data-genre="rock">
+                <h3>The String Cheese Incident</h3>
+                <p>Genre: Rock</p>
             </div>
         </main>
-        <footer class="main-footer">
-            <p>week 6 assignment
 
-            </p>
+        <footer class="main-footer">
+            <p>Week 6 Assignment</p>
+        </footer>
     </div>
 
     <script src="main.js"></script>
