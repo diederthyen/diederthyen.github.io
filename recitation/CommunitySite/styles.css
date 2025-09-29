@@ -1,0 +1,115 @@
+/* -- variables and basic reset -- */
+:root {
+  --bg: #fbfbff;
+  --nav-bg: #f3e8ff;
+  --accent: #ffd6d5;
+  --text: #153243;
+  --muted: #555;
+  --border: #ddd;
+  --card-bg: #fff;
+}
+
+body.dark-mode {
+  --bg: #1f1f1f;
+  --nav-bg: #2a2a2a;
+  --accent: #b46b6a;
+  --text: #f0f0f0;
+  --muted: #aaa;
+  --border: #444;
+  --card-bg: #252525;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* -- navigation -- */
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand { font-weight: 700; }
+.nav-menu { display: flex; list-style: none; gap: 0.5rem; margin: 0; padding: 0; }
+.nav-menu a { text-decoration: none; color: var(--text); padding: 0.4rem 0.7rem; border-radius: 6px; }
+.nav-menu a.primary { background: var(--accent); font-weight: 700; }
+.nav-toggle { display: none; border: 0; background: none; cursor: pointer; }
+.nav-toggle .bar { display: block; width: 18px; height: 2px; background: var(--text); position: relative; }
+.nav-toggle .bar::before, .nav-toggle .bar::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: var(--text); }
+.nav-toggle .bar::before { top: -6px; }
+.nav-toggle .bar::after { bottom: -6px; }
+
+@media (max-width: 768px) {
+  .nav-menu { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-menu.show {
+    display: block; position: absolute; left: 0; right: 0;
+    top: 60px;
+    background: var(--nav-bg); padding: 0.5rem; z-index: 10;
+  }
+}
+
+/* -- layout 1: homepage grid -- */
+.home-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  grid-template-areas: "header" "hero" "gigs" "artists" "footer";
+}
+@media (min-width: 768px) {
+  .home-grid {
+    grid-template-areas: "header header" "hero hero" "gigs artists" "footer footer";
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* -- layout 2: artist page grid -- */
+.artist-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  grid-template-areas: "header" "filters" "results" "footer";
+}
+@media (min-width: 768px) {
+  .artist-grid {
+    grid-template-areas: "header header" "filters results" "footer footer";
+    grid-template-columns: 250px 1fr;
+  }
+}
+
+/* -- grid area assignments -- */
+.main-header { grid-area: header; }
+.hero-section { grid-area: hero; }
+.upcoming-gigs { grid-area: gigs; }
+.featured-artists { grid-area: artists; }
+.filter-controls { grid-area: filters; }
+.artist-results { grid-area: results; }
+.main-footer { grid-area: footer; text-align: center; }
+
+/* -- other styles -- */
+.artist-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.filters button {
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.filters button.active { background: var(--accent); }
+.theme-switch-wrapper { display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem; }
+.hidden { display: none; }

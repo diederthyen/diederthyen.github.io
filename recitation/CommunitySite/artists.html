@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artists Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="artist-grid">
+        <header class="main-header">
+            <nav class="main-nav">
+                <div class="nav-brand">Community Hub</div>
+                <button class="nav-toggle">
+                    <span class="bar"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="artists.html">Artists</a></li>
+                    <li><a href="#">Link 3</a></li>
+                    <li><a href="#">Link 4</a></li>
+                    <li><a class="primary" href="#">Action Button</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside class="filter-controls">
+            <h2>Filters</h2>
+            <div class="filters">
+                <button data-genre="all" class="active">All</button>
+                <button data-genre="type1">Type 1</button>
+                <button data-genre="type2">Type 2</button>
+                <button data-genre="type3">Type 3</button>
+            </div>
+            
+            <div class="theme-switch-wrapper">
+              <label for="theme-switch">Dark Mode</label>
+              <input type="checkbox" id="theme-switch" />
+            </div>
+        </aside>
+
+        <main class="artist-results">
+            <div class="artist-card" data-genre="type2">
+                <h3>Artist 1</h3>
+                <p>Genre: Type 2</p>
+            </div>
+            <div class="artist-card" data-genre="type1">
+                <h3>Artist 2</h3>
+                <p>Genre: Type 1</p>
+            </div>
+            <div class="artist-card" data-genre="type3">
+                <h3>Artist 3</h3>
+                <p>Genre: Type 3</p>
+            </div>
+             <div class="artist-card" data-genre="type1">
+                <h3>Artist 4</h3>
+                <p>Genre: Type 1</p>
+            </div>
+             <div class="artist-card" data-genre="type2">
+                <h3>Artist 5</h3>
+                <p>Genre: Type 2</p>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <p>Copyright 2025</p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
