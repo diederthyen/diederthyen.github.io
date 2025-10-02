@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Boulder Music Hub</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- quick theme styles (minimal, you can move to styles.css) -->
+    <style>
+      /* theme backgrounds & text */
+      html.light { background: #f9f9f9; color: #111; }
+      html.dark  { background: #0f1724; color: #e6eef8; }
+
+      /* example: invert header/footer backgrounds a bit for dark mode */
+      html.light .main-header, html.light .main-footer { background: #f3f3f3; }
+      html.dark  .main-header, html.dark  .main-footer { background: #08101a; }
+
+      /* small theme toggle style (adjust in your CSS file as needed) */
+      .theme-toggle {
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 6px;
+      }
+      .theme-toggle:focus { outline: 3px solid rgba(100,200,180,0.18); }
+
+      /* make sure body/layout use inherited text color */
+      body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; color: inherit; }
+    </style>
+
+    <!-- set saved theme as early as possible to avoid flash -->
+    <script>
+      (function() {
+        try {
+          const saved = localStorage.getItem('userTheme') || 'light';
+          // apply to the root html element so CSS applies immediately
+          document.documentElement.className = saved;
+        } catch (e) {
+          // if localStorage not available, default to light (no crash)
+          document.documentElement.className = 'light';
+        }
+      })();
+    </script>
 </head>
 <body>
 
@@ -12,9 +52,17 @@
         <header class="main-header">
             <nav class="main-nav">
                 <div class="nav-brand">boulder music hub</div>
-                <button class="nav-toggle">
+
+                <!-- existing nav toggle -->
+                <button class="nav-toggle" aria-label="toggle navigation">
                     <span class="bar"></span>
                 </button>
+
+                <!-- theme toggle inserted here so it's visible in the header -->
+                <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="toggle light or dark theme">
+                  toggle theme
+                </button>
+
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="artists.html">Artists</a></li>
@@ -48,6 +96,50 @@
         </footer>
     </div>
 
+    <!-- existing main script (keeps any other logic you have) -->
     <script src="main.js"></script>
+
+    <!-- theme toggle logic (keeps localStorage key 'userTheme') -->
+    <script>
+      (function(){
+        const KEY = 'userTheme';
+        const btn = document.getElementById('themeToggle');
+
+        function setTheme(theme) {
+          try {
+            localStorage.setItem(KEY, theme);
+          } catch (e) {
+            // localStorage may fail in private mode — ignore silently
+          }
+          document.documentElement.className = theme;
+          if (btn) {
+            btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+            // update button text to reflect new state
+            btn.textContent = theme === 'dark' ? 'dark mode' : 'light mode';
+          }
+        }
+
+        // initialize button text/aria based on currently applied class
+        function initButton() {
+          const current = document.documentElement.className || 'light';
+          if (btn) {
+            btn.setAttribute('aria-pressed', current === 'dark' ? 'true' : 'false');
+            btn.textContent = current === 'dark' ? 'dark mode' : 'light mode';
+          }
+        }
+
+        // attach handler
+        if (btn) {
+          btn.addEventListener('click', function(){
+            const current = document.documentElement.className || 'light';
+            const next = current === 'light' ? 'dark' : 'light';
+            setTheme(next);
+          });
+        }
+
+        // ensure button shows right state on load (in case JS ran earlier)
+        document.addEventListener('DOMContentLoaded', initButton);
+      })();
+    </script>
 </body>
 </html>

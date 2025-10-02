@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DThyen ica week 6</title>
     <style>
-        body {
+        body.light {
             font-family: sans-serif;
             background-color: #ccd6e5;
+            padding: 1rem;
+        }
+
+        body.dark {
+            font-family: sans-serif;
+            background-color: #051225;
             padding: 1rem;
         }
         /* --- Part 1 grid conversion --- */
@@ -99,6 +105,7 @@
             <button>All</button>
             <button>Nature</button>
             <button>Architecture</button>
+            <button>Light/Dark mode</button>
         </nav>
         
         <main class="gallery-grid">
@@ -120,6 +127,10 @@
         const filterButtons = document.querySelectorAll('.gallery-nav button');
         const photoCards = document.querySelectorAll('.photo-card');
 
+
+        
+
+
         filterButtons.forEach(button => {
             button.addEventListener('click', (event) => {
                 const filterValue = event.target.textContent.toLowerCase();
@@ -139,7 +150,27 @@
                 }
             });
         }
+
+        // function setTheme(theme) {
+        //     localStorage.setItem('userTheme', theme);
+        //     document.body.className = theme;
+        // }
+
+        // document.querySelector('.gallery-nav button:nth-child(4)').addEventListener('click', () => {
+        //     const currentTheme = document.body.className;
+        //     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        //     setTheme(newTheme);
+        // });
+
+        // window.addEventListener('load', function() {
+        //     const savedTheme = localStorage.getItem('userTheme') || 'light';
+        //     document.body.className = savedTheme;
+        // });
+
+
+
     </script>
 
 </body>
 </html>
+
