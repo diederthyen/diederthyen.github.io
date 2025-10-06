@@ -1,4 +1,4 @@
-/* -- variables and basic reset -- */
+/* variables */
 :root {
   --bg: #fbfbff;
   --nav-bg: #f3e8ff;
@@ -7,109 +7,124 @@
   --muted: #555;
   --border: #ddd;
   --card-bg: #fff;
+  --focus: rgba(100,200,180,0.18);
 }
 
-body.dark-mode {
-  --bg: #1f1f1f;
-  --nav-bg: #2a2a2a;
-  --accent: #b46b6a;
-  --text: #f0f0f0;
-  --muted: #aaa;
-  --border: #444;
-  --card-bg: #252525;
-}
+html.light { color-scheme: light; }
+html.dark  { color-scheme: dark; --bg: #0f1724; --nav-bg:#08101a; --accent:#ffb86b; --text:#e6eef8; --muted:#9fb0c8; --border:#16202a; --card-bg:#0b1220; }
 
 * { box-sizing: border-box; }
 body {
-  margin: 0;
-  font-family: sans-serif;
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   background: var(--bg);
   color: var(--text);
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background .25s ease, color .25s ease;
 }
 
-/* -- navigation -- */
+/* navigation */
 .main-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.6rem 1rem;
-  background: var(--nav-bg);
-  border-bottom: 1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:0.75rem;
+  padding:0.6rem 1rem;
+  background:var(--nav-bg);
+  border-bottom:1px solid var(--border);
+  position:relative;
 }
-.nav-brand { font-weight: 700; }
-.nav-menu { display: flex; list-style: none; gap: 0.5rem; margin: 0; padding: 0; }
-.nav-menu a { text-decoration: none; color: var(--text); padding: 0.4rem 0.7rem; border-radius: 6px; }
-.nav-menu a.primary { background: var(--accent); font-weight: 700; }
-.nav-toggle { display: none; border: 0; background: none; cursor: pointer; }
-.nav-toggle .bar { display: block; width: 18px; height: 2px; background: var(--text); position: relative; }
-.nav-toggle .bar::before, .nav-toggle .bar::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: var(--text); }
-.nav-toggle .bar::before { top: -6px; }
-.nav-toggle .bar::after { bottom: -6px; }
+.nav-brand { font-weight:700; color:var(--muted); }
 
+.controls { display:flex; align-items:center; gap:0.5rem; margin-left:auto; }
+
+.theme-toggle, .clear-btn {
+  border:0; background:transparent; color:inherit; cursor:pointer; padding:6px 10px; border-radius:6px;
+}
+.theme-toggle:focus, .clear-btn:focus, select:focus, .nav-toggle:focus { outline:3px solid var(--focus); }
+
+.lang-label { display:none; }
+
+/* nav menu */
+.nav-menu { display:flex; list-style:none; gap:0.5rem; margin:0; padding:0; align-items:center; }
+.nav-menu a { text-decoration:none; color:var(--text); padding:0.4rem 0.7rem; border-radius:6px; }
+.nav-menu a.primary { background:var(--accent); font-weight:700; }
+
+/* hamburger */
+.nav-toggle { display:none; border:0; background:none; width:44px; height:44px; align-items:center; justify-content:center; cursor:pointer; }
+.nav-toggle .bar{ display:block; width:18px; height:2px; background:var(--text); position:relative; }
+.nav-toggle .bar::before, .nav-toggle .bar::after { content:""; position:absolute; left:0; right:0; height:2px; background:var(--text); }
+.nav-toggle .bar::before{ top:-6px; } .nav-toggle .bar::after{ bottom:-6px; }
+
+/* responsive menu */
 @media (max-width: 768px) {
-  .nav-menu { display: none; }
-  .nav-toggle { display: flex; }
-  .nav-menu.show {
-    display: block; position: absolute; left: 0; right: 0;
-    top: 60px;
-    background: var(--nav-bg); padding: 0.5rem; z-index: 10;
-  }
+  .nav-menu { display:none; position:absolute; top:60px; left:0; right:0; background:var(--nav-bg); padding:0.6rem; box-shadow:0 8px 20px rgba(0,0,0,0.08); }
+  .nav-menu.show { display:block; }
+  .nav-toggle { display:flex; }
+  .controls { order:1; } /* put controls before menu on small screens */
 }
 
-/* -- layout 1: homepage grid -- */
+/* layout: homepage grid */
 .home-grid {
-  display: grid;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  display:grid; gap:1.5rem; padding:1.25rem;
   grid-template-areas: "header" "hero" "gigs" "artists" "footer";
 }
-@media (min-width: 768px) {
-  .home-grid {
-    grid-template-areas: "header header" "hero hero" "gigs artists" "footer footer";
-    grid-template-columns: 2fr 1fr;
-  }
+@media (min-width:768px) {
+  .home-grid { grid-template-areas: "header header" "hero hero" "gigs artists" "footer footer"; grid-template-columns: 2fr 1fr; }
 }
 
-/* -- layout 2: artist page grid -- */
+/* artist page grid */
 .artist-grid {
-  display: grid;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  display:grid; gap:1.5rem; padding:1.25rem;
   grid-template-areas: "header" "filters" "results" "footer";
 }
-@media (min-width: 768px) {
-  .artist-grid {
-    grid-template-areas: "header header" "filters results" "footer footer";
-    grid-template-columns: 250px 1fr;
-  }
+@media (min-width:768px) {
+  .artist-grid { grid-template-areas: "header header" "filters results" "footer footer"; grid-template-columns: 250px 1fr; }
 }
 
-/* -- grid area assignments -- */
+/* areas */
 .main-header { grid-area: header; }
 .hero-section { grid-area: hero; }
 .upcoming-gigs { grid-area: gigs; }
 .featured-artists { grid-area: artists; }
 .filter-controls { grid-area: filters; }
 .artist-results { grid-area: results; }
-.main-footer { grid-area: footer; text-align: center; }
+.main-footer { grid-area: footer; text-align:center; }
 
-/* -- other styles -- */
-.artist-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+/* cards + container query */
+.card { background:var(--card-bg); border:1px solid var(--border); padding:1rem; border-radius:8px; }
+
+/* make card queryable */
+.card { container-type: inline-size; }
+
+/* default stacked */
+.card { display:block; }
+
+/* when card container at least 420px, layout side-by-side inside card */
+@container (min-width:420px) {
+  .artist-card.card { display:flex; align-items:center; gap:1rem; }
+  .artist-card.card h3 { margin:0 0 0.25rem 0; }
 }
-.filters button {
-    border: 1px solid var(--border);
-    background: var(--card-bg);
-    color: var(--text);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    cursor: pointer;
+
+/* artist cards */
+.artist-card { margin-bottom:1rem; }
+
+/* filters */
+.filters button { border:1px solid var(--border); background:var(--card-bg); color:var(--text); padding:0.5rem 1rem; border-radius:20px; cursor:pointer; }
+.filters button.active { background:var(--accent); }
+
+/* utility */
+.hidden { display:none !important; }
+
+/* touch targets */
+button, select, .filters button, .nav-toggle { min-height:44px; min-width:44px; }
+
+/* small screens adjustments */
+@media (max-width:420px) {
+  .nav-brand { font-size:0.95rem; }
+  .controls { gap:0.35rem; }
+  .home-grid, .artist-grid { padding:0.75rem; }
+  .filters button { padding:0.4rem 0.6rem; }
 }
-.filters button.active { background: var(--accent); }
-.theme-switch-wrapper { display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem; }
-.hidden { display: none; }
+
+/* focus visibility */
+a:focus, button:focus { outline:3px solid var(--focus); outline-offset:2px; }

@@ -1,73 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Artists - Boulder Music Hub</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Find Artists - Boulder Music Hub</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // apply saved prefs early (same logic as index)
+    (function(){
+      try {
+        const raw = localStorage.getItem('bma_prefs');
+        const now = Date.now();
+        const EXP_MS = 1000 * 60 * 60 * 24 * 180;
+        if (raw) {
+          const prefs = JSON.parse(raw);
+          if (prefs.ts && (now - prefs.ts) > EXP_MS) {
+            localStorage.removeItem('bma_prefs');
+            document.documentElement.className = 'light';
+            document.documentElement.lang = 'en';
+          } else {
+            document.documentElement.className = prefs.theme || 'light';
+            document.documentElement.lang = prefs.lang || 'en';
+          }
+        } else {
+          document.documentElement.className = 'light';
+          document.documentElement.lang = 'en';
+        }
+      } catch (e) {
+        document.documentElement.className = 'light';
+        document.documentElement.lang = 'en';
+      }
+    })();
+  </script>
 </head>
 <body>
+  <div class="artist-grid">
+    <header class="main-header">
+      <nav class="main-nav" role="navigation" aria-label="main navigation">
+        <div class="nav-brand">boulder music hub</div>
 
-    <div class="artist-grid">
-        <header class="main-header">
-            <nav class="main-nav">
-                <div class="nav-brand">boulder music hub</div>
-                <button class="nav-toggle">
-                    <span class="bar"></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="artists.html">Artists</a></li>
-                    <li><a href="#gigs">Gigs</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a class="primary" href="#post-gig">Post a Gig</a></li>
-                </ul>
-            </nav>
-        </header>
+        <button class="nav-toggle" aria-label="toggle navigation" aria-expanded="false">
+          <span class="bar" aria-hidden="true"></span>
+        </button>
 
-        <aside class="filter-controls">
-            <h2>Filter Artists</h2>
-            <div class="filters">
-                <button data-genre="all" class="active">All</button>
-                <button data-genre="folk">Folk</button>
-                <button data-genre="rock">Rock</button>
-                <button data-genre="jazz">Jazz</button>
-            </div>
-            
-            <div class="theme-switch-wrapper">
-              <label for="theme-switch">Dark Mode</label>
-              <input type="checkbox" id="theme-switch" />
-            </div>
-        </aside>
+        <div class="controls">
+          <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="toggle theme">toggle theme</button>
 
-        <main class="artist-results">
-            <div class="artist-card" data-genre="folk">
-                <h3>Gregory Alan Isakov</h3>
-                <p>Genre: Folk</p>
-            </div>
-            <div class="artist-card" data-genre="rock">
-                <h3>Big Head Todd and the Monsters</h3>
-                <p>Genre: Rock</p>
-            </div>
-            <div class="artist-card" data-genre="jazz">
-                <h3>Art Lande</h3>
-                <p>Genre: Jazz</p>
-            </div>
-             <div class="artist-card" data-genre="folk">
-                <h3>Elephant Revival</h3>
-                <p>Genre: Folk</p>
-            </div>
-             <div class="artist-card" data-genre="rock">
-                <h3>The String Cheese Incident</h3>
-                <p>Genre: Rock</p>
-            </div>
-        </main>
+          <label class="lang-label" for="langSelect">lang</label>
+          <select id="langSelect" aria-label="select language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+          </select>
 
-        <footer class="main-footer">
-            <p>Week 6 Assignment</p>
-        </footer>
-    </div>
+          <button id="clearPrefs" class="clear-btn">clear my data</button>
+          <span id="prefsMsg" role="status" aria-live="polite"></span>
+        </div>
 
-    <script src="main.js"></script>
+        <ul class="nav-menu">
+          <li><a href="index.html" data-i18n="navHome">Home</a></li>
+          <li><a href="artists.html" data-i18n="navArtists">Artists</a></li>
+          <li><a href="#gigs" data-i18n="navGigs">Gigs</a></li>
+          <li><a href="#events" data-i18n="navEvents">Events</a></li>
+          <li><a class="primary" href="#post-gig" data-i18n="navPost">Post a Gig</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <aside class="filter-controls">
+      <h2 data-i18n="filter">Filter Artists</h2>
+      <div class="filters" role="toolbar" aria-label="genre filters">
+        <button data-genre="all" class="active">All</button>
+        <button data-genre="folk">Folk</button>
+        <button data-genre="rock">Rock</button>
+        <button data-genre="jazz">Jazz</button>
+      </div>
+
+      <div class="theme-switch-wrapper" aria-hidden="true">
+        <!-- deprecated internal switch left for compatibility; main toggle in header controls theme -->
+        <label for="theme-switch">Dark Mode</label>
+        <input type="checkbox" id="theme-switch" />
+      </div>
+    </aside>
+
+    <main class="artist-results">
+      <!-- cards are container query enabled (see styles.css) -->
+      <div class="artist-card card" data-genre="folk">
+        <h3>Gregory Alan Isakov</h3>
+        <p>Genre: Folk</p>
+      </div>
+      <div class="artist-card card" data-genre="rock">
+        <h3>Big Head Todd and the Monsters</h3>
+        <p>Genre: Rock</p>
+      </div>
+      <div class="artist-card card" data-genre="jazz">
+        <h3>Art Lande</h3>
+        <p>Genre: Jazz</p>
+      </div>
+      <div class="artist-card card" data-genre="folk">
+        <h3>Elephant Revival</h3>
+        <p>Genre: Folk</p>
+      </div>
+      <div class="artist-card card" data-genre="rock">
+        <h3>The String Cheese Incident</h3>
+        <p>Genre: Rock</p>
+      </div>
+    </main>
+
+    <footer class="main-footer">
+      <p>Week 6 Assignment</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

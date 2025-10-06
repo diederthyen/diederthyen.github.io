@@ -1,145 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Boulder Music Hub</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Boulder Music Hub</title>
+  <link rel="stylesheet" href="styles.css">
 
-    <!-- quick theme styles (minimal, you can move to styles.css) -->
-    <style>
-      /* theme backgrounds & text */
-      html.light { background: #f9f9f9; color: #111; }
-      html.dark  { background: #0f1724; color: #e6eef8; }
+  <!-- tiny theme/lang apply to avoid flash -->
+  <script>
+    (function(){
+      try {
+        const raw = localStorage.getItem('bma_prefs');
+        const now = Date.now();
+        const EXP_MS = 1000 * 60 * 60 * 24 * 180; // 180 days
 
-      /* example: invert header/footer backgrounds a bit for dark mode */
-      html.light .main-header, html.light .main-footer { background: #f3f3f3; }
-      html.dark  .main-header, html.dark  .main-footer { background: #08101a; }
-
-      /* small theme toggle style (adjust in your CSS file as needed) */
-      .theme-toggle {
-        border: 0;
-        background: transparent;
-        color: inherit;
-        font-weight: 600;
-        cursor: pointer;
-        padding: 6px 10px;
-        border-radius: 6px;
-      }
-      .theme-toggle:focus { outline: 3px solid rgba(100,200,180,0.18); }
-
-      /* make sure body/layout use inherited text color */
-      body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; color: inherit; }
-    </style>
-
-    <!-- set saved theme as early as possible to avoid flash -->
-    <script>
-      (function() {
-        try {
-          const saved = localStorage.getItem('userTheme') || 'light';
-          // apply to the root html element so CSS applies immediately
-          document.documentElement.className = saved;
-        } catch (e) {
-          // if localStorage not available, default to light (no crash)
+        if (raw) {
+          const prefs = JSON.parse(raw);
+          if (prefs.ts && (now - prefs.ts) > EXP_MS) {
+            localStorage.removeItem('bma_prefs');
+            document.documentElement.className = 'light';
+            document.documentElement.lang = 'en';
+          } else {
+            document.documentElement.className = prefs.theme || 'light';
+            document.documentElement.lang = prefs.lang || 'en';
+          }
+        } else {
           document.documentElement.className = 'light';
+          document.documentElement.lang = 'en';
         }
-      })();
-    </script>
+      } catch (e) {
+        document.documentElement.className = 'light';
+        document.documentElement.lang = 'en';
+      }
+    })();
+  </script>
 </head>
 <body>
+  <div class="home-grid">
+    <header class="main-header">
+      <nav class="main-nav" role="navigation" aria-label="main navigation">
+        <div class="nav-brand">boulder music hub</div>
 
-    <div class="home-grid">
-        <header class="main-header">
-            <nav class="main-nav">
-                <div class="nav-brand">boulder music hub</div>
+        <button class="nav-toggle" aria-label="toggle navigation" aria-expanded="false">
+          <span class="bar" aria-hidden="true"></span>
+        </button>
 
-                <!-- existing nav toggle -->
-                <button class="nav-toggle" aria-label="toggle navigation">
-                    <span class="bar"></span>
-                </button>
+        <!-- controls area -->
+        <div class="controls">
+          <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="toggle theme">toggle theme</button>
 
-                <!-- theme toggle inserted here so it's visible in the header -->
-                <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="toggle light or dark theme">
-                  toggle theme
-                </button>
+          <label class="lang-label" for="langSelect">lang</label>
+          <select id="langSelect" aria-label="select language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+          </select>
 
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="artists.html">Artists</a></li>
-                    <li><a href="#gigs">Gigs</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a class="primary" href="#post-gig">Post a Gig</a></li>
-                </ul>
-            </nav>
-        </header>
+          <button id="clearPrefs" class="clear-btn">clear my data</button>
+          <span id="prefsMsg" role="status" aria-live="polite"></span>
+        </div>
 
-        <section class="hero-section">
-            <h1>Connecting Boulder's Music Scene</h1>
-            <p>Find local artists, discover upcoming gigs, and connect with the community.</p>
-        </section>
+        <ul class="nav-menu">
+          <li><a href="index.html" data-i18n="navHome">Home</a></li>
+          <li><a href="artists.html" data-i18n="navArtists">Artists</a></li>
+          <li><a href="#gigs" data-i18n="navGigs">Gigs</a></li>
+          <li><a href="#events" data-i18n="navEvents">Events</a></li>
+          <li><a class="primary" href="#post-gig" data-i18n="navPost">Post a Gig</a></li>
+        </ul>
+      </nav>
+    </header>
 
-        <main class="upcoming-gigs">
-            <h2>Upcoming Gigs</h2>
-            <p>The Fretliners @ The Fox Theatre - 9/29</p>
-            <p>Jubilingo @ Velvet Elk Lounge - 10/2</p>
-            <p>Los Cheesies @ Rayback Collective - 10/5</p>
-        </main>
+    <section class="hero-section">
+      <h1 data-i18n="heroHeading">Connecting Boulder's Music Scene</h1>
+      <p data-i18n="heroSub">Find local artists, discover upcoming gigs, and connect with the community.</p>
+    </section>
 
-        <aside class="featured-artists">
-            <h2>Featured Artists</h2>
-            <p>Check out our full artist directory to find musicians for your next event.</p>
-            <a href="artists.html" class="button">Browse Artists</a>
-        </aside>
+    <main class="upcoming-gigs">
+      <h2 data-i18n="upcoming">Upcoming Gigs</h2>
+      <p>The Fretliners @ The Fox Theatre - 9/29</p>
+      <p>Jubilingo @ Velvet Elk Lounge - 10/2</p>
+      <p>Los Cheesies @ Rayback Collective - 10/5</p>
+    </main>
 
-        <footer class="main-footer">
-            <p>Week 6 Assignment</p>
-        </footer>
-    </div>
+    <aside class="featured-artists card">
+      <h2 data-i18n="featured">Featured Artists</h2>
+      <p data-i18n="featuredBlurb">Check out our full artist directory to find musicians for your next event.</p>
+      <a href="artists.html" class="button" data-i18n="browse">Browse Artists</a>
+    </aside>
 
-    <!-- existing main script (keeps any other logic you have) -->
-    <script src="main.js"></script>
+    <footer class="main-footer">
+      <p>Week 6 Assignment</p>
+      <p class="privacy-notice">
+      We store a small set of preferences locally on your device to make the site easier to use: theme (light/dark) and language (english/spanish). These preferences are saved only in your browser (localStorage) and are never sent to our servers. Preferences expire automatically after 180 days and you can clear them any time with the “clear my data” button in the header.
+      </p>
+    </footer>
+  </div>
 
-    <!-- theme toggle logic (keeps localStorage key 'userTheme') -->
-    <script>
-      (function(){
-        const KEY = 'userTheme';
-        const btn = document.getElementById('themeToggle');
-
-        function setTheme(theme) {
-          try {
-            localStorage.setItem(KEY, theme);
-          } catch (e) {
-            // localStorage may fail in private mode — ignore silently
-          }
-          document.documentElement.className = theme;
-          if (btn) {
-            btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
-            // update button text to reflect new state
-            btn.textContent = theme === 'dark' ? 'dark mode' : 'light mode';
-          }
-        }
-
-        // initialize button text/aria based on currently applied class
-        function initButton() {
-          const current = document.documentElement.className || 'light';
-          if (btn) {
-            btn.setAttribute('aria-pressed', current === 'dark' ? 'true' : 'false');
-            btn.textContent = current === 'dark' ? 'dark mode' : 'light mode';
-          }
-        }
-
-        // attach handler
-        if (btn) {
-          btn.addEventListener('click', function(){
-            const current = document.documentElement.className || 'light';
-            const next = current === 'light' ? 'dark' : 'light';
-            setTheme(next);
-          });
-        }
-
-        // ensure button shows right state on load (in case JS ran earlier)
-        document.addEventListener('DOMContentLoaded', initButton);
-      })();
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
