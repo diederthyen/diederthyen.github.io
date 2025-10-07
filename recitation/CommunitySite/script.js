@@ -7,6 +7,41 @@ document.addEventListener('DOMContentLoaded', function () {
   var navToggle = document.querySelectorAll('.nav-toggle');
   var navMenus = document.querySelectorAll('.nav-menu');
 
+
+  // -----------------------
+  // i18n small map (expandable)
+  // -----------------------
+  const TEXT = {
+    en: {
+      navHome: 'Home',
+      navArtists: 'Artists',
+      navGigs: 'Gigs',
+      navEvents: 'Events',
+      navPost: 'Post a Gig',
+      heroHeading: "Connecting Boulder's Music Scene",
+      heroSub: "Find local artists, discover upcoming gigs, and connect with the community.",
+      upcoming: "Upcoming Gigs",
+      featured: "Featured Artists",
+      featuredBlurb: "Check out our full artist directory to find musicians for your next event.",
+      browse: "Browse Artists",
+      filter: "Filter Artists"
+    },
+    es: {
+      navHome: 'Inicio',
+      navArtists: 'Artistas',
+      navGigs: 'Conciertos',
+      navEvents: 'Eventos',
+      navPost: 'Publicar',
+      heroHeading: "Conectando la escena musical de Boulder",
+      heroSub: "Encuentra artistas locales, descubre conciertos y conecta con la comunidad.",
+      upcoming: "Próximos conciertos",
+      featured: "Artistas destacados",
+      featuredBlurb: "Consulta nuestro directorio completo para encontrar músicos para tu próximo evento.",
+      browse: "Ver artistas",
+      filter: "Filtrar artistas"
+    }
+  };
+
   navToggle.forEach(function(btn){
     btn.addEventListener('click', function(){
       // find nearest nav-menu (page has a single one)
@@ -41,6 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
+
+
 
   // -----------------------
   // THEME + LANGUAGE + PREFS
@@ -159,41 +196,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   })();
-
-
-  // -----------------------
-  // i18n small map (expandable)
-  // -----------------------
-  const TEXT = {
-    en: {
-      navHome: 'Home',
-      navArtists: 'Artists',
-      navGigs: 'Gigs',
-      navEvents: 'Events',
-      navPost: 'Post a Gig',
-      heroHeading: "Connecting Boulder's Music Scene",
-      heroSub: "Find local artists, discover upcoming gigs, and connect with the community.",
-      upcoming: "Upcoming Gigs",
-      featured: "Featured Artists",
-      featuredBlurb: "Check out our full artist directory to find musicians for your next event.",
-      browse: "Browse Artists",
-      filter: "Filter Artists"
-    },
-    es: {
-      navHome: 'Inicio',
-      navArtists: 'Artistas',
-      navGigs: 'Conciertos',
-      navEvents: 'Eventos',
-      navPost: 'Publicar',
-      heroHeading: "Conectando la escena musical de Boulder",
-      heroSub: "Encuentra artistas locales, descubre conciertos y conecta con la comunidad.",
-      upcoming: "Próximos conciertos",
-      featured: "Artistas destacados",
-      featuredBlurb: "Consulta nuestro directorio completo para encontrar músicos para tu próximo evento.",
-      browse: "Ver artistas",
-      filter: "Filtrar artistas"
-    }
-  };
 
   function updateTextForLang(lang) {
     const map = TEXT[lang] || TEXT.en;
