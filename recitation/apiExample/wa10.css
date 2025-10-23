@@ -27,7 +27,7 @@ header {
   font-weight: bold;
   text-align: center;
   padding: 15px;
-  background-color: #007BFF;
+  background-color: #4ab8b5;
   color: white;
 }
 
@@ -76,17 +76,17 @@ header {
 }
 
 .twitter {
-  background-color: #1da1f2;
+  background-color: #4ab8b5;
 }
 
 .new-quote {
-  background-color: #e27474;
+  background-color: #00a43c;
   margin-bottom: 10px;
 }
 
 /* Disabled state (still useful for JS) */
 .button:disabled {
-  background-color: #cccccc;
+  background-color: #ffffff;
   cursor: not-allowed;
 }
 
@@ -100,5 +100,5 @@ header {
 .explanation p {
   font-size: 14px;
   line-height: 1.5;
-  color: #444;
+  color: #292929;
 }
