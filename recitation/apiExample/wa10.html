@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WA10 - Quote Machine</title>
+    <link rel="stylesheet" href="wa10.css">
+</head>
+<body>
+    <div class="app">
+        <header>Random Quote Machine</header>
+        
+        <section class="quotes">
+          <div class="quote-text" id="js-quote-text">Loading...</div>
+          <div class="author-text" id="js-author-text"></div>
+          <div class="tags-text" id="js-tags-text"></div>
+        </section>
+        
+        <section class="controls">
+          <button type="button" id="js-new-quote" class="new-quote button">
+            Get New Quote
+          </button>
+          <button type="button" id="js-tweet" class="twitter button">
+            Tweet this quote!
+          </button>
+        </section>
+
+        <section class="explanation">
+            <p>
+                <strong>What is your extension?</strong><br>
+                My primary extension is the twitter button. This button just opens twitter lol. I also added a simple loading thing... the buttons are disabled and then there text that shows "Loading..." while a new quote is being fetched from the API.
+            </p>
+            <p>
+                <strong>How could you use an API in your critique project?</strong><br>
+                I could use the Spotify API to pull real song, artist, and playlist data so my prototype feels realistic when showing how recommendations change. I'd mainly use data like track popularity, audio features, and artist info to compare Spotify's default algorithm with my redesigned, more fair version.
+            </p>
+        </section>
+      </div>
+      
+      <script src="wa10.js"></script>
+</body>
+</html>
