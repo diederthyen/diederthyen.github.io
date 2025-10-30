@@ -1,0 +1,17 @@
+body {
+    font-family: sans-serif;
+    background: #ffb1b1;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+.image-container {
+    margin: 20px;
+}
+
+img {
+    max-width: 300px;
+}
