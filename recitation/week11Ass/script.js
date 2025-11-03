@@ -33,14 +33,14 @@ async function fetchDogImage() {
 		url = `https://dog.ceo/api/breed/${favoriteBreed.toLowerCase()}/images/random`;
 	}
 
-	try {
-		const res = await fetch(url);
-		const data = await res.json();
+	try { //... used ai to help with the semantics here
+	const res = await fetch(url);
+	const data = await res.json();
 
 		if (data.status === "success") {
 			imgElement.src = data.message;
 
-			// get the breed name from the url... used google to help with this one
+			// get the breed name from the url
 			const parts = data.message.split("/");
 			const breedPart = parts[parts.indexOf("breeds") + 1]; // ex. collie...
 			const breedName = breedPart.replace("-", " ").split("/")[0];
@@ -49,7 +49,7 @@ async function fetchDogImage() {
         else {
 			imgElement.src = "";
 			breedDisplay.textContent = "";
-			alert("Could not find that breed. Try another one!");
+			alert("Couldn't find that one try again");
 		}
 	} catch (error) {
 		alert("Error fetching data. Please try again later.");
@@ -66,8 +66,6 @@ saveBreedBtn.addEventListener("click", () => {
 	if (breed) {
 		localStorage.setItem("favoriteBreed", breed);
 		breedStatus.textContent = `Saved favorite breed: ${breed}`;
-	} else {
-		alert("put in a breed name before saving");
 	}
 });
 
@@ -75,7 +73,7 @@ saveBreedBtn.addEventListener("click", () => {
 clearBreedBtn.addEventListener("click", () => {
 	localStorage.removeItem("favoriteBreed");
 	breedInput.value = "";
-	breedStatus.textContent = "Favorite breed cleared.";
+	breedStatus.textContent = "chooice cleared";
 });
 
 
