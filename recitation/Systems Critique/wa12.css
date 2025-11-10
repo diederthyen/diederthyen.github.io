@@ -1,0 +1,74 @@
+html,body{
+	height:100%;
+	margin:0;
+	padding:0;
+	font-family: Arial, sans-serif;
+	background:#95a5c4;
+	color:#000000;
+}
+
+#cityInput{
+	padding:8px;
+	border-radius:6px;
+}
+
+#searchBtn{
+	padding:8px 12px;
+	border-radius:6px;
+    border: #000000;
+	background:#164170;
+	color:#ffffff;
+	cursor:pointer;
+}
+
+#results{
+	display:grid;
+	gap:12px;
+}
+
+.card{
+	background:#ffffff;
+	padding:10px;
+	border-radius:8px;
+	box-shadow:0 4px 10px rgba(0,0,0,0.06);
+	display:flex;
+	flex-direction:column;
+	min-height:10px;
+}
+
+.card h2{
+	margin:0 0 6px 0;
+	font-size:15px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.card .venue{
+	font-size:13px;
+	color:#666;
+	margin:0 0 8px 0;
+}
+
+.card a{
+	text-decoration:none;
+	padding:6px 8px;
+	border-radius:6px;
+	border:1px solid #2b6cb0;
+	color:#2b6cb0;
+	font-weight:600;
+	font-size:13px;
+	align-self:flex-start;
+}
+
+.msg{
+	grid-column:1/-1;
+	background:transparent;
+	padding:8px 0;
+	color:#505050;
+}
+
+#foot{
+	margin:12px;
+	color:#473636;
+}
