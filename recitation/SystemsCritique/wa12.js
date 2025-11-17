@@ -114,7 +114,7 @@ function makeCard(event) {
 	return card
 }
 
-function fetchEvents(city, callback) { // ChatGPT helped with this function, especially the Xhr fetch.
+function fetchEvents(city, callback) {
 	const query = encodeURIComponent(city)
 	const url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=' + apiKey + '&countryCode=US&city=' + query + '&sort=date,asc'
 
