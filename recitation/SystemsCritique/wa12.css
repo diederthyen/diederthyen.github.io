@@ -1,74 +1,186 @@
-html,body{
-	height:100%;
+body{
 	margin:0;
-	padding:0;
+	padding:20px;
 	font-family: Arial, sans-serif;
-	background:#95a5c4;
+	background:#acb8cf;
 	color:#000000;
 }
 
-#cityInput{
-	padding:8px;
-	border-radius:6px;
+#app{
+	max-width:1200px;
+	margin:0 auto;
 }
 
-#searchBtn{
-	padding:8px 12px;
+h1{
+	color:#121b6b;
+	font-size:28px;
+	margin:0 0 10px 0;
+}
+
+p{
+	margin:0 0 10px 0;
+	font-size:15px;
+}
+
+#controls{
+	margin:20px 0;
+}
+
+#cityInput{
+	padding:10px;
 	border-radius:6px;
-    border: #000000;
-	background:#164170;
+	border:2px solid #18387c;
+	font-size:14px;
+	margin-right:8px;
+}
+
+button{
+	padding:10px 16px;
+	border-radius:6px;
+	border:none;
+	background:#1a5f8d;
 	color:#ffffff;
 	cursor:pointer;
+	font-size:14px;
+	margin-right:8px;
+}
+
+button:hover{
+	background:#141566;
+}
+
+#fairBtn{
+	background:#29ad86;
+}
+
+#fairBtn:hover{
+	background:#21c07e;
 }
 
 #results{
 	display:grid;
-	gap:12px;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap:16px;
 }
 
 .card{
 	background:#ffffff;
-	padding:10px;
 	border-radius:8px;
-	box-shadow:0 4px 10px rgba(0,0,0,0.06);
-	display:flex;
-	flex-direction:column;
-	min-height:10px;
+	overflow:hidden;
+}
+
+.card:hover{
+	box-shadow:0 4px 12px #757575;
+}
+
+.card-image{
+	width:100%;
+	height:180px;
+	object-fit:cover;
+	background:#ffdcc8;
+}
+
+.card-content{
+	padding:12px;
+}
+
+.card-tags{
+	margin-bottom:8px;
+}
+
+.tag{
+	font-size:11px;
+	padding:3px 8px;
+	border-radius:4px;
+	font-weight:600;
+	margin-right:6px;
+}
+
+.tag-today{
+	background:#f05d4a;
+	color:#ffffff;
+}
+
+.tag-cheap{
+	background:#279e43;
+	color:#ffffff;
 }
 
 .card h2{
-	margin:0 0 6px 0;
-	font-size:15px;
-	white-space:nowrap;
-	overflow:hidden;
-	text-overflow:ellipsis;
+	margin:0 0 8px 0;
+	font-size:16px;
+	color:#154879;
 }
 
-.card .venue{
+.date{
 	font-size:13px;
-	color:#666;
+	color:#636363;
+	margin:0 0 6px 0;
+}
+
+.venue{
+	font-size:13px;
+	color:#666666;
 	margin:0 0 8px 0;
+}
+
+.price{
+	font-size:15px;
+	color:#2ab336;
+	font-weight:bold;
+	margin:0 0 12px 0;
+}
+
+.price-unknown{
+	font-size:13px;
+	color:#727272;
+	font-style:italic;
+	margin:0 0 12px 0;
 }
 
 .card a{
 	text-decoration:none;
-	padding:6px 8px;
+	padding:8px 12px;
 	border-radius:6px;
-	border:1px solid #2b6cb0;
-	color:#2b6cb0;
+	background:#115d7a;
+	color:#ffffff;
 	font-weight:600;
 	font-size:13px;
-	align-self:flex-start;
+	display:inline-block;
+}
+
+.card a:hover{
+	background:#0f2255;
 }
 
 .msg{
+	background:#ffffff;
+	padding:16px;
+	color:#ec603d;
+	border-radius:8px;
+	text-align:center;
 	grid-column:1/-1;
-	background:transparent;
-	padding:8px 0;
-	color:#505050;
 }
 
 #foot{
-	margin:12px;
-	color:#473636;
+	text-align:center;
+	color:#473333;
+	font-size:13px;
+	margin-top:20px;
+}
+
+@media (max-width: 768px) {
+	#results{
+		grid-template-columns: 1fr;
+	}
+	
+	#cityInput{
+		width:100%;
+		margin-bottom:8px;
+	}
+	
+	button{
+		width:100%;
+		margin-bottom:8px;
+	}
 }
